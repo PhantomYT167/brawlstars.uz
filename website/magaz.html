@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./magaz.css">
+    <title>Фриланс Платформа</title>
+    
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="user-greeting" id="user-greeting">Привет: Гость</div>
+            
+            <div class="nav-main">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#" id="nav-home">Главная</a></li>
+                    <li><a href="#" id="nav-ads">Объявления</a></li>
+                    <li><a href="#" id="nav-donates">Донаты</a></li>
+                    <li class="admin-only hidden"><a href="#" id="nav-admin">Админ-панель</a></li>
+                </ul>
+            </div>
+            
+            <div class="user-actions">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="uz">UZ</button>
+                </div>
+                
+                <button class="btn btn-primary" id="btn-login">Войти / Регистрация</button>
+                <button class="btn btn-danger hidden" id="btn-logout">Выйти</button>
+                <button class="btn btn-danger hidden" id="btn-admin-logout">Выйти из админки</button>
+                
+                <div class="burger-menu" id="burger-menu">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="home-page">
+            <div class="carousel">
+                <button class="carousel-arrow prev">‹</button>
+                <button class="carousel-arrow next">›</button>
+                
+                <div class="carousel-slide active" style="background-image: url('./n1.png')"></div>
+                <div class="carousel-slide" style="background-image: url('./n2.png')"></div>
+                 <div class="carousel-slide" style="background-image: url('./n3.png')"></div>
+               
+                
+                <div class="carousel-controls">
+                    <div class="carousel-dot active" data-slide="0"></div>
+                    <div class="carousel-dot" data-slide="1"></div>
+                    <div class="carousel-dot" data-slide="2"></div>
+                  
+                </div>
+            </div>
+
+            <div class="hero">
+                <h1 id="hero-title">Фриланс Платформа</h1>
+                <p id="hero-text">Найдите исполнителей для своих задач или начните зарабатывать на своих навыках. Безопасно, удобно и надежно!</p>
+                <button class=" " id="hero-get-started">Начать сейчас</button>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 id="feature1-title">Безопасность</h3>
+                    <p id="feature1-text">Все платежи защищены, а ваши данные в безопасности. Мы используем современные методы шифрования.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 id="feature2-title">Быстро</h3>
+                    <p id="feature2-text">Найдите исполнителя или работу за считанные минуты. Наша система оптимизирована для скорости.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3 id="feature3-title">Выгодно</h3>
+                    <p id="feature3-text">Низкие комиссии и прозрачная система расчетов. Зарабатывайте больше с нашим сервисом.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ads-page" class="hidden">
+            <h2 id="ads-title">Все объявления</h2>
+            <div class="search-bar">
+                <input type="text" id="search-ads" placeholder="Поиск объявлений...">
+                <button id="search-btn">Найти</button>
+            </div>
+            <div class="ads-grid" id="ads-container"></div>
+        </section>
+
+        <section id="donates-page" class="hidden">
+            <h2 id="donates-title">Донаты</h2>
+            <div class="search-bar">
+                <input type="text" id="search-donates" placeholder="Поиск донатов...">
+                <button id="search-donates-btn">Найти</button>
+            </div>
+            <div class="ads-grid" id="donates-container"></div>
+        </section>
+
+        <section id="ad-details-page" class="hidden">
+            <button class="btn btn-primary" id="back-to-ads">← Назад</button>
+            <div class="ad-details">
+                <div class="ad-image" id="detail-image"></div>
+                <div class="ad-content">
+                    <span class="ad-category" id="detail-category">Объявление</span>
+                    <h2 id="detail-title">Название объявления</h2>
+                    <div class="ad-price" id="detail-price">UZS0</div>
+                    <p id="detail-description">Описание объявления</p>
+                    <div class="ad-user" id="detail-user">@username</div>
+                    <a href="#" class="btn btn-success" id="contact-user">Связаться в Telegram</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="admin-page" class="hidden">
+            <h2 id="admin-title">Админ-панель</h2>
+            <div class="admin-panel">
+                <div class="admin-tabs">
+                    <div class="admin-tab active" data-tab="post-ad" data-ru="Выложить объявление" data-uz="E'lon joylash">Выложить объявление</div>
+                    <div class="admin-tab" data-tab="manage-ads" data-ru="Управление объявлениями" data-uz="E'lonlarni boshqarish">Управление объявлениями</div>
+                </div>
+
+                <div id="admin-post-ad" class="admin-tab-content">
+                    <form id="admin-post-ad-form">
+                        <div class="form-group">
+                            <label for="admin-ad-category" data-ru="Категория" data-uz="Kategoriya">Категория</label>
+                            <select id="admin-ad-category" class="form-control" required>
+                                <option value="ads" data-ru="Объявление" data-uz="E'lon">Объявление</option>
+                                <option value="donates" data-ru="Донаты" data-uz="Donatlar">Донаты</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-ad-title" data-ru="Заголовок" data-uz="Sarlavha">Заголовок</label>
+                            <input type="text" id="admin-ad-title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-ad-description" data-ru="Описание" data-uz="Tavsif">Описание</label>
+                            <textarea id="admin-ad-description" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-ad-price" data-ru="Цена (UZS)" data-uz="Narx (UZS)">Цена (UZS)</label>
+                            <input type="number" id="admin-ad-price" class="form-control" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-ad-user" data-ru="Telegram пользователя" data-uz="Foydalanuvchi Telegrami">Telegram пользователя</label>
+                            <input type="text" id="admin-ad-user" class="form-control" placeholder="@username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-ad-image" data-ru="Изображение" data-uz="Rasm">Изображение</label>
+                            <input type="file" id="admin-ad-image" class="form-control" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-success" data-ru="Выложить объявление" data-uz="E'lon joylash">Выложить объявление</button>
+                    </form>
+                </div>
+
+                <div id="admin-manage-ads" class="admin-tab-content hidden">
+                    <div class="ads-grid" id="admin-ads-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="auth-page" class="hidden">
+            <div class="form-container">
+                <h2 id="auth-title">Вход / Регистрация</h2>
+                <form id="auth-form">
+                    <div class="form-group" id="username-group">
+                        <label for="username" data-ru="Логин" data-uz="Login">Логин</label>
+                        <input type="text" id="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" data-ru="Пароль" data-uz="Parol">Пароль</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="auth-submit" data-ru="Войти" data-uz="Kirish">Войти</button>
+                </form>
+                <p style="text-align: center; margin-top: 15px; visibility: hidden;">
+                    <a href="#" id="toggle-auth" data-ru="Нет аккаунта? Зарегистрироваться" data-uz="Hisobingiz yo'q? Ro'yxatdan o'tish">Нет аккаунта? Зарегистрироваться</a>
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-ru="Редактировать объявление" data-uz="E'lonni tahrirlash">Редактировать объявление</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="edit-ad-form">
+                <input type="hidden" id="edit-ad-id">
+                <div class="form-group">
+                    <label for="edit-ad-category" data-ru="Категория" data-uz="Kategoriya">Категория</label>
+                    <select id="edit-ad-category" class="form-control" required>
+                        <option value="ads" data-ru="Объявление" data-uz="E'lon">Объявление</option>
+                        <option value="donates" data-ru="Донаты" data-uz="Donatlar">Донаты</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-ad-title" data-ru="Заголовок" data-uz="Sarlavha">Заголовок</label>
+                    <input type="text" id="edit-ad-title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-ad-description" data-ru="Описание" data-uz="Tavsif">Описание</label>
+                    <textarea id="edit-ad-description" class="form-control" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-ad-price" data-ru="Цена (UZS)" data-uz="Narx ($)">Цена (UZS)</label>
+                    <input type="number" id="edit-ad-price" class="form-control" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-ad-user" data-ru="Telegram пользователя" data-uz="Foydalanuvchi Telegrami">Telegram пользователя</label>
+                    <input type="text" id="edit-ad-user" class="form-control" placeholder="@username" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-ad-image" data-ru="Изображение" data-uz="Rasm">Изображение</label>
+                    <input type="file" id="edit-ad-image" class="form-control" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-success" data-ru="Сохранить изменения" data-uz="O'zgarishlarni saqlash">Сохранить изменения</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./magaz.js"></script>
+</body>
+</html>
